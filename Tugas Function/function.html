@@ -180,6 +180,26 @@
                                         </td>
                                     </tr>
                                     <tr>
+                                        <td><b>Kategori Produk :</b></td>
+                                        <td>
+                                            <select class="form-control" name="kategori" id="id_kategori" onchange="kodepro(this.value)">
+                                                <option hidden>Pilih Kategori :</option>
+                                                <option value="Sepatu Wanita">Sepatu Wanita</option>
+                                                <option value="Sepatu Pria">Sepatu Pria</option>
+                                                <option value="Tas Wanita">Tas Wanita</option>
+                                                <option value="Tas Pria">Tas Pria</option>
+                                                <option value="Pakaian Wanita">Pakaian Wanita</option>
+                                                <option value="Pakaian Pria">Pakaian Pria</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Harga Satuan:</b></td>
+                                        <td>
+                                            <input readonly type="text" class="form-control" id="id_hargaproduk" name="harga" placeholder="Masukkan Harga Produk...">
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td><b>Nama Produk :</b></td>
                                         <td>
                                             <select name="masuknamaproduk" class="form-control" id="id_namaproduk" onclick="otonama()">
@@ -191,26 +211,6 @@
                                                 <option value="Rochas W Shoes">Rochas W Shoes</option>
                                                 <option value="Little Nemo Shirt">Little Nemo Shirt</option>
                                                 <option value="Fuchsia Baby Lolita Bag">Fuchsia Baby Lolita Bag</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Harga Satuan:</b></td>
-                                        <td>
-                                            <input readonly type="text" class="form-control" id="id_hargaproduk" name="harga" placeholder="Masukkan Harga Produk...">
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Kategori Produk :</b></td>
-                                        <td>
-                                            <select class="form-control" name="kategori" id="id_kategori" onchange="kodepro(this.value)">
-                                                <option hidden>Pilih Kategori :</option>
-                                                <option value="Sepatu Wanita">Sepatu Wanita</option>
-                                                <option value="Sepatu Pria">Sepatu Pria</option>
-                                                <option value="Tas Wanita">Tas Wanita</option>
-                                                <option value="Tas Pria">Tas Pria</option>
-                                                <option value="Pakaian Wanita">Pakaian Wanita</option>
-                                                <option value="Pakaian Pria">Pakaian Pria</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -258,10 +258,10 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <button class="form-control btn-outline-danger" id="buttonbataledit" onclick="bataledit()">Batal</button>
+                                            <button type="button" class="form-control btn-outline-danger" id="buttonbataledit" onclick="bataledit()">Batal</button>
                                         </td>
                                         <td>
-                                            <button class="form-control btn-outline-success" id="buttonsimpanedit" onclick="simpanubah()">Simpan</button>
+                                            <button type="button" class="form-control btn-outline-success" id="buttonsimpanedit" onclick="simpanubah()">Simpan</button>
                                         </td>
                                     </tr>
                                 </table>
@@ -421,11 +421,12 @@
                 totalhrga[index] = simpantotalhrg
 
                 showData()
+                index.pop()
 
 
                 document.getElementById('id_kodeproduk').value = ""
-                document.getElementById('id_namaproduk').value = "Pilih Produk"
-                document.getElementById('id_kategori').value = "Pilih Kategori :"
+                document.getElementById('id_namaproduk').value = ""
+                document.getElementById('id_kategori').value = ""
                 document.getElementById('id_totalbarangdibeli').value = ""
                 document.getElementById('id_totalharga').value = ""
 
