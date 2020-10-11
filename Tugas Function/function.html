@@ -231,11 +231,11 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2"><small><i><b>*NOTE: Jika Beli Diatas 4 Akan Mendapat Diskon
-                                                        25%</b></i></small></td>
+                                                        4%</b></i></small></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="2">
-                                            <button type="button" id="buttontotal" class="form-control btn-outline-link" onclick="totalin()">Totalkan Harga</button>
+                                        <td>
+                                            <button style="margin-left: 106%;" type="button" id="buttontotal" class="form-control btn-outline-link" onclick="totalin()">Totalkan Harga</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -246,8 +246,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <button type="button" id="buttontambah" class="form-control btn-outline-info" onclick="tambah()">Tambahkan Ke
-                                                Keranjang</button>
+                                            <button type="button" id="buttontambah" class="form-control btn-outline-info" onclick="tambah()">Simpan Data</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -270,6 +269,59 @@
         </form>
     </div>
     <br>
+
+    <div class="modal fade" id="modalbox" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+
+                        <label for="kode">Kode</label>
+                        <input readonly type="text" class="form-control" id="modalkode">
+                        <br>
+
+                        <label for="nama">Nama Produk</label>
+                        <input readonly type="text" class="form-control" id="modalnama">
+                        <br>
+
+                        <label for="kategori">Kategori</label>
+                        <input readonly type="text" class="form-control" id="modalkategori">
+                        <br>
+
+                        <label for="namalgkp">Nama Lengkap</label>
+                        <input readonly type="text" class="form-control" id="modalnamalkp">
+                        <br>
+
+                        <label for="email">E-Mail</label>
+                        <input readonly type="text" class="form-control" id="modalemail">
+                        <br>
+
+                        <label for="satuan">Harga Satuan</label>
+                        <input readonly class="form-control" type="text" id="modalsatuan">
+                        <br>
+
+                        <label for="jumlah">Jumlah Dibeli</label>
+                        <input readonly class="form-control" type="text" id="modaljumlah">
+                        <br>
+
+                        <label for="totharga">Total Harga</label>
+                        <input readonly class="form-control" type="text" id="modalharga">
+                        <br>
+
+                        <div class="modal-footer">
+                            <button type="button" style="margin-right: 41%;" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
     <div class="container" style="width: 82%; text-align: center;">
@@ -318,11 +370,14 @@
             document.getElementById("buttonsimpanedit").style.display = "none"
             document.getElementById("buttonbataledit").style.display = "none"
         }
-        var kodeproduk = ['BP-001']
-        var namaproduk = ['Kaos Pria Polos']
-        var kategori = ['Baju Pria']
-        var jumlahbrg = ['2']
-        var totalhrga = ['50000']
+        var kodeproduk = []
+        var namaproduk = []
+        var hrgsatuan = []
+        var kategori = []
+        var jumlahbrg = []
+        var totalhrga = []
+        var namalkp = []
+        var emailnya = []
 
         var tampil = document.getElementById('tampildata')
 
@@ -341,11 +396,11 @@
                     "<td>" + jumlahbrg[i] + "</td>" +
                     "<td>" + totalhrga[i] + "</td>" +
                     "<td>" +
-                    "<button class='btn btn-danger mt-2' href='#' onclick='hapus(" + i + ")'>Hapus</button>" +
-                    "<button class='btn btn-info mt-2 mr-1'onclick='edit(" + i + ")'>Ubah</button>" +
+                    "<button class='btn btn-info  mr-1'onclick='edit(" + i + ")'>Ubah</button>" +
+                    "<button class='btn btn-danger mr-1' href='#' onclick='hapus(" + i + ")'>Hapus</button>" +
                     "</td>" +
                     "<td>" +
-                    "<button class='btn btn-primary mt-2 mr-1'onclick='detail(" + i + ")'>Detail</button>" +
+                    "<button class='btn btn-warning mr-1' data-toggle='modal' data-target='#modalbox' onclick='detail(" + i + ")'>Detail</button>" +
                     "</td>" +
                     "</tr>"
 
@@ -357,22 +412,45 @@
         function tambah() {
             var produkbaru = document.getElementById('id_kodeproduk').value
             var namaprodukbaru = document.getElementById('id_namaproduk').value
+            var hrgsatuanbaru = document.getElementById('id_hargaproduk').value
             var kategoribaru = document.getElementById('id_kategori').value
+            var namalengkapbaru = document.getElementById('id_namalengkap').value
+            var emailbaru = document.getElementById('id_email').value
             var jumlahbrgbaru = document.getElementById('id_totalbarangdibeli').value
             var totalhargabaru = document.getElementById('id_totalharga').value
 
             if (totalhargabaru == '') {
                 alert('Silahkan Masukkan Data Terlebih Dahulu!')
+            } else if (emailbaru == '') {
+                alert('Silahkan Masukkan Data Terlebih Dahulu!')
+            } else if (hrgsatuanbaru == '') {
+                alert('Silahkan Masukkan Data Terlebih Dahulu!')
+            } else if (namalengkapbaru == '') {
+                alert('Silahkan Masukkan Data Terlebih Dahulu!')
+            } else if (jumlahbrgbaru == '') {
+                alert('Silahkan Masukkan Data Terlebih Dahulu!')
+            } else if (kategoribaru == '') {
+                alert('Silahkan Masukkan Data Terlebih Dahulu!')
+            } else if (namaprodukbaru == '') {
+                alert('Silahkan Masukkan Data Terlebih Dahulu!')
+            } else if (produkbaru == '') {
+                alert('Silahkan Masukkan Data Terlebih Dahulu!')
             } else {
                 kodeproduk.push(produkbaru)
                 namaproduk.push(namaprodukbaru)
+                hrgsatuan.push(hrgsatuanbaru)
                 kategori.push(kategoribaru)
+                namalkp.push(namalengkapbaru)
+                emailnya.push(emailbaru)
                 jumlahbrg.push(jumlahbrgbaru)
                 totalhrga.push(totalhargabaru)
                 showData()
                 document.getElementById('id_kodeproduk').value = ""
                 document.getElementById('id_namaproduk').value = "Pilih Produk"
+                document.getElementById('id_hargaproduk').value = ""
                 document.getElementById('id_kategori').value = "Pilih Kategori :"
+                document.getElementById('id_namalengkap').value = ""
+                document.getElementById('id_email').value = ""
                 document.getElementById('id_totalbarangdibeli').value = ""
                 document.getElementById('id_totalharga').value = ""
 
@@ -381,12 +459,13 @@
 
         function edit(i) {
             document.getElementById('id_kodeproduk').value = kodeproduk[i]
-            document.getElementById('id_namaproduk').value = "Pilih Produk"
-            document.getElementById('id_kategori').value = "Pilih Kategori :"
+            document.getElementById('id_namaproduk').value = namaproduk[i]
+            document.getElementById('id_kategori').value = kategori[i]
             document.getElementById('id_totalbarangdibeli').value = jumlahbrg[i]
             document.getElementById('id_totalharga').value = totalhrga[i]
-            document.getElementById('id_namalengkap').value = "Zaky Putra"
-            document.getElementById('id_email').value = "zakyputra@gmail.com"
+            document.getElementById('id_namalengkap').value = namalkp[i]
+            document.getElementById('id_email').value = emailnya[i]
+            document.getElementById('id_hargaproduk').value = hrgsatuan[i]
 
             document.getElementById("buttontambah").style.display = "none"
             document.getElementById("buttontotal").style.display = "inline"
@@ -401,6 +480,9 @@
             var simpankategori = document.getElementById('id_kategori').value
             var simpantotalbrg = document.getElementById('id_totalbarangdibeli').value
             var simpantotalhrg = document.getElementById('id_totalharga').value
+            var simpanhrgsatuan = document.getElementById('id_hargaproduk').value
+            var simpannamalkp = document.getElementById('id_namalengkap').value
+            var simpanemail = document.getElementById('id_email').value
 
             document.getElementById("buttontambah").style.display = "inline"
             document.getElementById("buttontotal").style.display = "inline"
@@ -416,6 +498,9 @@
                 kategori[index] = simpankategori
                 jumlahbrg[index] = simpantotalbrg
                 totalhrga[index] = simpantotalhrg
+                hrgsatuan[index] = simpanhrgsatuan
+                namalkp[index] = simpannamalkp
+                emailnya[index] = simpanemail
 
                 showData()
                 index.pop()
@@ -426,6 +511,10 @@
                 document.getElementById('id_kategori').value = ""
                 document.getElementById('id_totalbarangdibeli').value = ""
                 document.getElementById('id_totalharga').value = ""
+                document.getElementById('id_hargaproduk').value = ""
+                document.getElementById('id_namalengkap').value = ""
+                document.getElementById('id_email').value = ""
+
 
 
             }
@@ -433,10 +522,14 @@
 
         function bataledit() {
             document.getElementById('id_kodeproduk').value = ""
-            document.getElementById('id_namaproduk').value = ""
-            document.getElementById('id_kategori').value = ""
+            document.getElementById('id_namaproduk').value = "Pilih Produk"
+            document.getElementById('id_kategori').value = "Pilih Kategori :"
             document.getElementById('id_totalbarangdibeli').value = ""
             document.getElementById('id_totalharga').value = ""
+            document.getElementById('id_hargaproduk').value = ""
+            document.getElementById('id_namalengkap').value = ""
+            document.getElementById('id_email').value = ""
+
 
 
             document.getElementById("buttontambah").style.display = "inline"
@@ -451,7 +544,21 @@
             kategori.splice(i, 1);
             jumlahbrg.splice(i, 1);
             totalhrga.splice(i, 1);
+            emailnya.splice(i, 1);
+            namalkp.splice(i, 1);
+            hrgsatuan.splice(i, 1);
             showData()
+        }
+
+        function detail(i) {
+            document.getElementById('modalkode').value = kodeproduk[i]
+            document.getElementById('modalnama').value = namaproduk[i]
+            document.getElementById('modalkategori').value = kategori[i]
+            document.getElementById('modalnamalkp').value = namalkp[i]
+            document.getElementById('modalemail').value = emailnya[i]
+            document.getElementById('modaljumlah').value = jumlahbrg[i]
+            document.getElementById('modalharga').value = totalhrga[i]
+            document.getElementById('modalsatuan').value = hrgsatuan[i]
         }
 
         var index = []
@@ -538,7 +645,7 @@
             jml = eval(forminput.jumlahbarang.value);
 
             if (jml > 4) {
-                var disc = 0.25 * hrg * jml;
+                var disc = 0.04 * hrg * jml;
             } else {
                 var disc = 0;
             }
