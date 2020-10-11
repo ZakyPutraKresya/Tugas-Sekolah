@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- Place your kit's code here -->
+    <script src="https://kit.fontawesome.com/983042ecea.js" crossorigin="anonymous"></script>
     <title>Fashion Store</title>
 
     <style>
@@ -246,7 +248,7 @@
                                     </tr>
                                     <tr>
                                         <td colspan="2">
-                                            <button type="button" id="buttontambah" class="form-control btn-outline-info" onclick="tambah()">Simpan Data</button>
+                                            <button type="button" id="buttontambah" id="btnsimpan" class="form-control fas fa-save btn-outline-info" onclick="tambah()">  Simpan Data</button>
                                         </td>
                                     </tr>
                                     <tr>
@@ -396,11 +398,11 @@
                     "<td>" + jumlahbrg[i] + "</td>" +
                     "<td>" + totalhrga[i] + "</td>" +
                     "<td>" +
-                    "<button class='btn btn-info  mr-1'onclick='edit(" + i + ")'>Ubah</button>" +
-                    "<button class='btn btn-danger mr-1' href='#' onclick='hapus(" + i + ")'>Hapus</button>" +
+                    "<button class='btn btn-info  mr-1 fas fa-pen'onclick='edit(" + i + ")'> Ubah</button>" +
+                    "<button class='btn btn-danger mr-1 fas fa-ban' href='#' onclick='hapus(" + i + ")'> Hapus</button>" +
                     "</td>" +
                     "<td>" +
-                    "<button class='btn btn-warning mr-1' data-toggle='modal' data-target='#modalbox' onclick='detail(" + i + ")'>Detail</button>" +
+                    "<button class='btn btn-warning mr-1 fas fa-info-circle' data-toggle='modal' data-target='#modalbox' onclick='detail(" + i + ")'> Detail</button>" +
                     "</td>" +
                     "</tr>"
 
