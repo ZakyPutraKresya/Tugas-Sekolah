@@ -68,10 +68,9 @@
             <div class="col">
                 <a href="#isidata" style="color: #ffffff;">
                     <div class="card" style="width: 21rem; height: auto;">
-                        <img class="card-img-top" width="200" height="350" src="/Tugas Function/foto/sepatu_zalorapria.jpg" class="card-img-top" alt="card img cap">
+                        <img class="card-img-top" width="200" height="350" src="/Tugas Function/foto/sepatupria.jpg" class="card-img-top" alt="card img cap">
                         <div class="card-body">
-                            <h5 class="card-title" style="text-align: center; color: black;"> <b>Dbb1 Suede Calfskin
-                                    Sneaker</b></h5>
+                            <h5 class="card-title" style="text-align: center; color: black;"> <b>Sneaker for Man</b></h5>
                             <p class="card-title" style="text-align: center; color: black;"><del>Rp.1.299.000,-</del>
                             </p>
                             <h6 class="card-title" style="text-align: center; color: black;"><big>Rp.999.000,-</big>
@@ -113,10 +112,9 @@
             <div class="col">
                 <a href="#isidata" style="color: #ffffff;">
                     <div class="card" style="width: 21rem; height: auto;">
-                        <img class="card-img-top" width="200" height="350" src="/Tugas Function/foto/sepatu_zalora.jpg" class="card-img-top" alt="card img cap">
+                        <img class="card-img-top" width="200" height="350" src="/Tugas Function/foto/sepatuwanita.jpg" class="card-img-top" alt="card img cap">
                         <div class="card-body">
-                            <h5 class="card-title" style="text-align: center; color:black;"><b>Rochas White Leather
-                                    Pumps</b></h5>
+                            <h5 class="card-title" style="text-align: center; color:black;"><b>Heels</b></h5>
                             <p class="card-title" style="text-align: center; color: black;"><del>Rp.1.499.000,-</del>
                             </p>
                             <h6 class="card-title" style="text-align: center; color: black;"><big>Rp.1.099.000,-</big>
@@ -203,11 +201,11 @@
                                         <td>
                                             <select name="masuknamaproduk" class="form-control" id="id_namaproduk" onclick="otonama()">
                                                 <option selected hidden>Pilih Produk</option>
-                                                <option value="Dbb1 Sneaker">Dbb1 Sneaker</option>
+                                                <option value="Sneaker for Man">Sneaker for Man</option>
                                                 <option value="Grey Stripes Regular Shirt">Grey Stripes Regular Shirt
                                                 </option>
                                                 <option value="Ransel Pria">Ransel Pria</option>
-                                                <option value="Rochas W Shoes">Rochas W Shoes</option>
+                                                <option value="Heels">Heels</option>
                                                 <option value="Little Nemo Shirt">Little Nemo Shirt</option>
                                                 <option value="Fuchsia Baby Lolita Bag">Fuchsia Baby Lolita Bag</option>
                                             </select>
@@ -271,6 +269,37 @@
         </form>
     </div>
     <br>
+
+    <div class="modal fade" id="modalcart" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Detail Pemesanan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <table>
+                            <tr>
+                                <th id="namacart"></th>
+                            </tr>
+                            <tr>
+                                <th id="jumlahcart"></th>
+                            </tr>
+                            <tr>
+                                <th id="totalhrgcart"></th>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Detail -->
 
     <div class="modal fade" id="modalbox" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -605,13 +634,13 @@
             var kategoriny = "";
             var hargany = "";
 
-            if (namaproduknya == "Dbb1 Sneaker") {
+            if (namaproduknya == "Sneaker for Man") {
                 hargany = 1000000;
             } else if (namaproduknya == "Grey Stripes Regular Shirt") {
                 hargany = 500000;
             } else if (namaproduknya == "Ransel Pria") {
                 hargany = 100000;
-            } else if (namaproduknya == "Rochas W Shoes") {
+            } else if (namaproduknya == "Heels") {
                 hargany = 1100000;
             } else if (namaproduknya == "Little Nemo Shirt") {
                 hargany = 300000;
