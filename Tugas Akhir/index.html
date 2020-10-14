@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <title>Tugas Akhir</title>
+    <style>
+        .jumbotron {
+            height: 375px;
+            background-image: url(https://3.bp.blogspot.com/-1n6yzVW-yvo/WRqXcmcurII/AAAAAAAAAuM/RyUXyaiqwKEvdJ4AzG7Qc-SHSvd1QMMXgCLcB/s1600/indofood-indonetional.jpg);
+            background-size: cover;
+            background-position-y: -10px;
+        }
+        
+        .judullist {
+            height: 40px;
+            font-size: 17px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+
+        </div>
+    </div>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <div class="judullist bg-secondary rounded text-center text-white pt-2">List Items</div>
+                <div class="listkeranjang" id="listkeranjang">
+
+                </div>
+                <table width="100%">
+                    <tbody>
+                        <tr>
+                            <td>Discount (5%)</td>
+                            <td>Rp.800</td>
+                        </tr>
+                        <tr>
+                            <td>PPN (10%)</td>
+                            <td>Rp.1.600</td>
+                        </tr>
+                        <tr class="bg-secondary text-white">
+                            <td>Total Bayar</td>
+                            <td>Rp.13.600</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <button type="button" class="btn btn-primary mt-3 btn-block">Bayar</button>
+            </div>
+
+            <div class="col" id="listproduk">
+                <!-- List Produk -->
+
+
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var namaproduk = ['Susu UHT Coklat 1000ml', 'Indomie Goreng Biasa ( 5pcs )']
+        var hrgproduk = [15000, 12000]
+        var gambarproduk = ['https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full//94/MTA-3147187/indomilk_indomilk-coklat-susu-uht--1000-ml-_full02.jpg', 'https://cf.shopee.co.id/file/39bede469e7308342fe30de2877894b3']
+
+        var listproduk = document.getElementById('listproduk')
+        var listkeranjang = document.getElementById('listkeranjang')
+
+        var namaproduk_keranjang = []
+        var hargaproduk_keranjang = []
+
+        function showlistproduk() {
+            listproduk.innerHTML = ''
+            for (let i = 0; i < namaproduk.length; i++) {
+                listproduk.innerHTML += '<div class="card float-left mr-3 mb-3" style="width: 14rem; height: 25rem;">' +
+                    '<img src="' + gambarproduk[i] + '"class="card-img-top" alt="...">' +
+                    '<div class="card-body">' +
+                    '<h5 class="card-title">' + namaproduk[i] + '</h5>' +
+                    '<p class="card-text">' + hrgproduk[i] + '</p>' +
+                    '<a href="#" class="btn btn-primary" onclick="tambahitem(' + i + ')">Beli</a>' +
+                    '</div>' +
+                    '</div>'
+            }
+        }
+
+        function tambahitem(id) {
+            namaproduk_keranjang.push(namaproduk[id])
+            hargaproduk_keranjang.push(hrgproduk[id])
+
+            showlistkeranjang()
+
+        }
+
+        function showlistkeranjang() {
+            listkeranjang.innerHTML = ''
+            for (let i = 0; i < namaproduk_keranjang.length; i++) {
+                listkeranjang.innerHTML += '<div class="card mt-3 mb-3" style="width: 22rem;">' +
+                    '<div class="card-body">' +
+                    '<h5 class="card-title">' + namaproduk_keranjang[i] + '</h5>' +
+                    '<p class="card-text">Rp.' + hargaproduk_keranjang[i] + '</p>' +
+                    '<p>Qty : 1</p>' +
+                    '<a href="#" class="btn btn-primary float-right">Hapus</a>' +
+                    '</div>' +
+                    '</div>'
+
+            }
+        }
+        showlistproduk()
+    </script>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
+</html
