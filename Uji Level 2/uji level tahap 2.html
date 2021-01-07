@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Teko&family=Texturina:ital,wght@1,100&family=Varela+Round&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/5d3285099a.js" crossorigin="anonymous"></script>
+
+
+    <title>Starbhak Mart</title>
+
+    <style>
+        nav {
+            background-color: #2C89D4;
+        }
+
+        .listitems {
+            height: 40px;
+            font-size: 17px;
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        .tbody{
+            font-family: 'Varela Round', sans-serif;
+        }
+
+        .navbar-brand{
+            padding-left: 43%;
+        }
+
+        .card {
+            box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            width: 40%;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 9px 0 rgba(0,0,0,0.2);
+        }
+
+        .container-fluid {
+            padding: 2px 12px;
+        }
+
+        #listcart {
+            overflow: scroll;
+            width: 100%;
+            height: 370px;
+        }
+
+        #listpayment {
+            overflow: scroll;
+            width: 100%;
+            height: 378px;
+        }
+        
+    </style>
+</head>
+
+<body class="bg-light">
+    <!-- Image and text -->
+    <nav class="navbar">
+        <a class="navbar-brand">
+            <span style=" font-family: 'Righteous', cursive; color: white;">Starbhak Mart</span>
+        </a>
+    </nav>
+    <br>
+    <!-- Container 1 Utama -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-4">
+                <div class="listitems bg-primary rounded text-white text-center pt-2">
+                    <b style="margin-left: 35%;">Take Away</b>
+                    <i class="fas fa-angle-down" style="padding-left: 30%;"></i>
+                </div>
+                <div class="listitems bg-primary rounded text-white text-center pt-2 mt-2">
+                    <i class="fas fa-user-tie"><span style="font-family: 'Varela Round', sans-serif;"> Your Items</span></i>
+                </div>
+
+                <div class="bg-light" id="listcart">
+
+                </div>
+
+                <table class="table-light rounded" style="margin-top: 5px;" width="100%">
+                    <tbody class="tbody" style="font-size: 14px;">
+                        <tr>
+                            <td>Discount (15%)</td>
+                            <td>Rp. <span id="discount">0</span></td>
+                        </tr>
+                        <tr>
+                            <td><small style="font-style: italic;">*Jika Pembelian Lebih dari 750rb</small></td>
+                        </tr>
+                        <tr>
+                            <td>Tax (10%)</td>
+                            <td>Rp. <span id="tax">0</span></td>
+                        </tr>
+                        <tr class="bg-primary text-white">
+                            <td>Total Amount</td>
+                            <td>Rp. <span id="totalamount">0</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="col">
+                <div class="listitems bg-white rounded text-black pt-2 pl-2">
+                    <b style="margin-right: 76%;">List Item</b> 
+                    <a href="#" onclick="" class="fas fa-search" style="color: black;"></a> 
+                    <a href="#" onclick="openFullscreen();" class="fas fa-expand" style="color: black; margin-left: 3%;"></a>
+                    <a href="#" onclick="mengurutkan()" class="fas fa-sort" style="color: black; margin-left: 4%; "></a>
+                </div>  
+                <div id="listproduct">
+
+                </div>
+                
+               
+            </div>
+        </div>
+    </div>
+    
+    <br>
+
+    <div class="container-fluid" style="font-family: 'Varela Round', sans-serif;">
+        <div class="row">
+            <div class="col-8">
+                <table class="table table-borderless">
+                    <tbody class="table">
+                        <tr class="text-center">
+                            <th scope="col">Info Pembeli</th>
+                            <th scope="col">Pembayaran</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">
+                                <label for="namalkp"><i class="fa fa-user"></i> Nama Lengkap</label>
+                                <input type="text" class="form-control" id="namalengkap" name="name" placeholder="Masukkan Nama Lengkap">
+                            </th>
+                            <th scope="col">
+                                <label for="cards"><i class="fas fa-money-check-alt"></i> Accepted Cards</label>
+                                    <div class="icon-container" >
+                                        <i class="fab fa-google-pay" style="color: red;"></i>
+                                        <i class="fab fa-cc-paypal" style="color: darkblue;"></i>
+                                        <i class="fab fa-cc-amazon-pay" style="color:orange;"></i>
+                                        <i class="fab fa-apple-pay" style="color: black;"></i>
+                                    </div>
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="col">
+                                <label for="email"><i class="fa fa-envelope"></i> Email</label>
+                                <input type="text" class="form-control" id="email" name="email" placeholder="email@example.com">
+                            </th>
+                            <th scope="col">
+                                <label for="username"><i class="fas fa-signature"></i> Username Kartu</label>
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Masukkan Username">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="col">
+                                <label for="nokd"><i class="fas fa-fingerprint"></i> No Kartu/Pembayaran/HP</label>
+                                <input type="number" min="0" class="form-control" id="kode" name="nokode" placeholder="mis. 08123456789">
+                            </th>
+                            <th scope="col">
+                                <label for="total"><i class="far fa-money-bill-alt"></i> Jumlah Yang Ingin Dibayar</label>
+                                <input type="number" min="0" class="form-control" id="total" name="total" placeholder="mis. Rp.300.000">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="col">
+                                <label for="address"><i class="fas fa-map-marked-alt"></i> Alamat</label>
+                                <input type="text" class="form-control" id="address" name="address" placeholder="Jl. Raya Bogor">
+                            </th>
+                            <th scope="col">
+                                <label for="city"><i class="fa fa-institution"></i> City</label>
+                                <input type="text" class="form-control" id="kota" name="city" placeholder="Jakarta">
+                            </th>
+                        </tr>
+                        <tr>
+                            <th scope="col">
+                                <label for="kodepos"><i class="fas fa-home"></i> Kode Pos</label>
+                                <input type="text" min="0" class="form-control" id="kodepos" name="zip" placeholder="10001">
+                            </th>
+                            <th scope="col">
+                                <label for="kecamatan">Kecamatan</label>
+                                <input type="text" class="form-control" id="kecamatan" name="district" placeholder="Sukatani">
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-4">
+                <div class="listpayment bg-light rounded text-center">
+                    <table class="table table-borderless">
+                        <tbody class="table">
+                            <tr>
+                                <th scope="col">
+                                    <label style="margin-top: 10px;" for="listbayar">Belum Dibayar </label>
+                                </th>
+                                <th scope="col">
+                                    <i style="margin-top: 12px;" class="fas fa-shopping-cart"></i>
+                                </th>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="bg-light" id="listpayment">
+                    
+                </div>
+          
+                <button class="btn btn-primary form-control mt-2" data-toggle="modal" data-target="#autenModal">Bayar</button>
+              
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Autentikasi -->
+    <div class="modal fade" style="margin-top: 11%;" id="autenModal" role="status">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="margin-left: 37%;">Autentikasi</h5>
+                </div>
+                <div class="modal-body">
+                    Anda yakin sudah mengisi dengan benar?
+                </div>
+                <div class="modal-body">
+                    <button type="button" onclick="bayar()" data-toggle="modal" data-target="#successModal" class="btn btn-primary float-right ml-1">Yakin</button>
+                    <button type="button" class="btn btn-warning float-right" data-dismiss="modal">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Autentikasi -->
+    <div class="modal fade" style="margin-top: 11%;" id="successModal" role="status">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" style="margin-left: 30%;">Status Pembayaran</h5>
+                </div>
+                <div class="modal-body">
+                    Pembayaran Berhasil, Barang akan Segera Dikirim. Terimakasih!
+                </div>
+                <div class="modal-body">
+                    <button type="button" onclick="location.reload()" class="btn btn-primary float-right ml-1">Kembali</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+
+    <script>
+        
+        // Tempat naro variabel global
+        var totalbelanja
+        var totalhargabelanja
+
+        // Tempat naro data list produk
+        var nameproduct = [
+        'Radio', 'Monitor', 'Router', 'HUB', 'Switch', 'LAN', 'DSLR', 'Televisi', 'Headset','Earphone', 'Laptop', 'PS2',
+        'PS3', 'Mouse', 'Keyboard', 'DvD', 'Printer', 'Webcam'
+        ]
+        var priceproduct = [150000, 1000000, 300000, 85000, 125000, 45000, 7000000, 400000, 250000, 65000, 8000000, 650000, 
+        1750000, 425000, 165000, 450000, 2750000, 3250000]
+        var imageproduct = [
+        'https://pngimg.com/uploads/radio/radio_PNG19285.png',
+        'https://img.pngio.com/lg-38uc99-ultrawide-curved-monitor-with-bluetooth-speakers-lg-india-ultrawide-monitor-png-940_620.jpg',
+        'https://i.pinimg.com/originals/4d/6e/e3/4d6ee35efaf1cc622ab654c0d7a86de7.png',
+        'https://4winmobile.com/wp-content/uploads/2020/04/HUB.png',
+        'https://5.imimg.com/data5/XH/DN/YR/SELLER-8993093/unmanaged-switches-and-hubs-500x500.jpg',
+        'https://cf.shopee.co.id/file/155e29e1854aafae1a09a8791e4ff81b',
+        'https://i.pinimg.com/originals/6d/fc/da/6dfcda78e6445711dde808fa88afb22b.png',
+        'https://freepngimg.com/thumb/tv/5-old-tv-png-image-thumb.png',
+        'https://pngimg.com/uploads/headphones/headphones_PNG7629.png',
+        'https://freepngimg.com/thumb/technology/51351-1-mobile-earphone-png-download-free.png',
+        'https://i.pinimg.com/originals/8b/ed/07/8bed07b0525de6c40cec2fd811fa783c.png',
+        'https://lh3.googleusercontent.com/proxy/d3QzEoODUJab6S6gMroCxBFStwVz_BTXHjrAqFhfn6Ec3f3Z_n6nRuALV9DV_Kn2TfQf3zjiK9JBpuktMlyQnmRklrhH0Ek-e-dHUf0n6pHuVYXIvM7S8JUbMbuGNcjgzT-lVb0ScsI',
+        'https://icons.iconarchive.com/icons/nendomatt/playstation-3/512/PS3-fat-hor-icon.png',
+        'https://gaming.kinesis-ergo.com/wp-content/uploads/2019/04/Vektor-Mouse-Thumb.png',
+        'https://i5.walmartimages.com/asr/038cdd33-01c0-41f0-a1d1-9c63de622744_5.408267355efd544b5065827938323963.png',
+        'https://thegoodguys.sirv.com/products/50060506/50060506_563920.PNG?scale.height=505&scale.width=773&canvas.height=505&canvas.width=773&canvas.opacity=0&q=90',
+        'https://purepng.com/public/uploads/large/canon-color-photo-printer-bd6.png',
+        'https://assets.logitech.com/assets/65478/3/c920-pro-hd-webcam-refresh.png'
+        ]
+        var quantityproduct = ['1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1','1']
+        
+        // Tempat naro data keranjang
+        var cartnameproduct = []
+        var cartpriceproduct = []
+        var cartquantity = []
+
+        // Tempat naro data payment atau hasil checkout
+        var paymentnameproduct = []
+        var paymentamountproduct = []
+        var paymentquantity = []
+        var paymentpriceproduct = []
+
+        // Perkumpulan Variabel Global pemanggilan list via id
+        var listproduct = document.getElementById('listproduct')
+        var listcart = document.getElementById('listcart')
+        var listpayment = document.getElementById('listpayment')
+
+        // Perkumpulan Variabel Global pemanggilan tampil via id
+        var tampildiscount = document.getElementById('discount')
+        var tampiltax = document.getElementById('tax')
+        var tampilamount = document.getElementById('totalamount')  
+
+        // Perkumpulan tambah tambah item
+            // Tambah item produk ke keranjang
+            function tambahitem(id) {
+                cartnameproduct.push(nameproduct[id])
+                cartpriceproduct.push(priceproduct[id])
+                cartquantity.push(quantityproduct[id])
+
+                showlistcart()
+
+            }
+
+            // Tambah item dari keranjang ke tabel payment atau checkout
+            function tambahpayment() {
+                paymentnameproduct.push(cartnameproduct)
+                paymentamountproduct.push(totalbelanja)
+                paymentquantity.push(cartquantity)
+                paymentpriceproduct.push(totalhargabelanja)
+
+                // Fungsinya biar kalo di klik checkout total harga, diskon, pajak ke reset atau berubah jadi 0 lagi
+                var discount = 0
+                var totalamount = 0
+                var tax = 0
+
+                // Lalu dipanggil menggunakan variabel global.inner html = variabel lokal
+                tampildiscount.innerHTML = discount
+                tampilamount.innerHTML = totalamount
+                tampiltax.innerHTML = tax
+
+                // listcart.innerhtml berfungsi untuk membuat list keranjang menjadi kosong lagi
+                listcart.innerHTML = '';
+                
+                // Berfungsi untuk jika di klik checkout maka data tidak tersimpan pada keranjang
+                // Dan jika membeli produk baru maka dia tidak terjadi double produk
+                cartnameproduct = [];
+                cartpriceproduct = [];
+                cartquantity = [];
+
+                showlistpayment()
+                
+                }
+        
+
+        // Fungsi menghapus item dari keranjang
+        function hapusitem(id) {
+            cartnameproduct.splice(id, 1)
+            cartpriceproduct.splice(id, 1)
+            cartquantity.splice(id, 1)
+
+            showlistcart()
+        }
+
+        // Fungsi tombol bayar
+        function bayar() {
+            // Pemanggilan Variabel lokal menggunakan id
+            var namabaru = document.getElementById('namalengkap').value
+            var emailbaru = document.getElementById('email').value
+            var usernamebaru = document.getElementById('username').value
+            var kodebaru = document.getElementById('kode').value
+            var totalbaru = document.getElementById('total').value
+            var alamatbaru = document.getElementById('address').value
+            var kotabaru = document.getElementById('kota').value
+            var kecbaru = document.getElementById('kecamatan').value
+            var kodeposbaru = document.getElementById('kodepos').value
+
+            // Location reload berfungsi untuk merefresh page atau halaman
+            if (listpayment == paymentnameproduct, paymentpriceproduct, paymentquantity, paymentamountproduct == '') {
+                alert('Transaksi Gagal. Data Checkout Kosong!')
+                location.reload()
+            } else if (emailbaru == '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()   
+            } else if (totalbaru < paymentamountproduct) {
+                alert('Transaksi Gagal. Saldo Anda Tidak Cukup!')
+                location.reload()
+            } else if (namabaru = '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()
+            } else if (usernamebaru == '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()
+            } else if (kodebaru == '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()
+            } else if (alamatbaru == '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()
+            } else if (kotabaru == '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()
+            } else if (kecbaru == '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()
+            } else if (kodeposbaru == '') {
+                alert('Transaksi Gagal. Silahkan Masukkan Data Terlebih Dahulu!')
+                location.reload()
+            } else {
+                alert('Autentikasi Berhasil')
+            }
+             
+        }
+
+        // Fungsi gabut daripada kosong
+        var fullskrin = document.documentElement;
+            function openFullscreen() {
+                if (fullskrin.requestFullscreen) {
+                    fullskrin.requestFullscreen();
+                } else if (fullskrin.webkitRequestFullscreen) {
+                    fullskrin.webkitRequestFullscreen();
+                } else if (fullskrin.msRequestFullscreen) { 
+                    fullskrin.msRequestFullscreen();
+                }
+            }
+
+        // Perkumpulan Show list atau tampil data
+            // tampil produk
+            function showlistproduct() {
+                listproduct.innerHTML = ''
+                for (let i = 0; i < nameproduct.length; i++) {
+                    listproduct.innerHTML +='<a href="#" onclick="tambahitem(' + i + ')"><div class="card float-left mt-2 mr-2 mb-2" style="width: 8rem; height: 9rem;">' +
+                        '<img src="' + imageproduct[i] + '"class="card-img ml-3" style="width: 75%; height: 70px" alt="...">' +
+                        '<div class="card-body">' +
+                        '<small class="card-text" style="font-size: 14px; margin-left: 21px; color: black; font-family: Varela Round, sans-serif;">' + nameproduct[i] + '</small>' +
+                        '<p class="card-title text-center" style="font-size: 14px;"><b>Rp. ' + priceproduct[i] + '</b></p>' +
+                        '</div>' +
+                        '</div></a>'
+                }
+            }
+
+            // tampil keranjang atau cart
+            function showlistcart() {
+                listcart.innerHTML = ''
+
+                // Tempat variabel lokal
+                var discount = 0
+                var tax = 0
+                var hargatotal = 0
+                var totalamount = 0
+
+                // Ditampilkan agar jika data keranjang dikosongkan data tidak nyangkut
+                tampildiscount.innerHTML = discount
+                tampilamount.innerHTML = totalamount
+                tampiltax.innerHTML = tax
+
+                for (let i = 0; i < cartnameproduct.length; i++) {
+                    listcart.innerHTML += '<div class="card mb-2 mt-2" style="width: 100%; height: 6rem;">' +
+                        '<div class="card-body" style="font-family: Varela Round, sans-serif;">' +
+                        '<p class="card-text" style="font-size: 15px;">' + cartnameproduct[i] + '<span class="card-text" style="float: right; font-size: 14px;" > Rp.' + cartpriceproduct[i] + '</span></p>'+
+                        '<p class="card-text" style="font-size: 14px;">Quantity : ' + cartquantity[i] + ' <a href="#" class="far fa-trash-alt" style="color: black; float: right;" onclick="hapusitem(' + i + ')"> </a></p>' +
+                        '<button class="btn btn-warning form-control fas fa-money-bill-wave mt-3 text-black" onclick="tambahpayment()"><span style="font-family: Varela Round, sans-serif;"> Checkout</span></button>' +
+                        '</div>' +
+                        '</div>'
+                    
+                    // Perhitungan harga produk 
+                    hargatotal = cartpriceproduct[i] + hargatotal
+
+                    // Perhitungan Diskon
+                    if (hargatotal >= 750000) {
+                        discount = hargatotal * 0.15
+                    } else {
+                        discount = 0
+                    }
+
+                    // Perhitungan Total Sebelum ditambah tax atau pajak
+                    totalamount = hargatotal - discount
+
+                    // Perhitungan Pajak Atau Tax
+                    tax = hargatotal * 0.1
+
+                    // Perhitungan Total Keseluruhan ( Setelah dikurangi diskon dan ditambah pajak )
+                    totalbelanja = totalamount + tax
+
+                    // Cuma buat di bagian tambah payment 
+                    totalhargabelanja = hargatotal
+                    
+
+                    // Menampilkan
+                    tampildiscount.innerHTML = discount
+                    tampilamount.innerHTML = totalbelanja
+                    tampiltax.innerHTML = tax
+
+                }
+            }
+
+            // tampil payment atau hasil checkout
+            function showlistpayment() {
+                listpayment.innerHTML = ''
+
+                for (let i = 0; i < paymentnameproduct.length; i++) {
+                    listpayment.innerHTML += '<div class="card mb-2 mt-2" style="width: 100%; height: 6rem;">' +
+                        '<div class="card-body" style="font-family: Varela Round, sans-serif;">' +
+                        '<p class="card-text" style="font-size: 15px;">' + paymentnameproduct[i] + '<s class="card-text" style="float: right; font-size: 15px;">Rp.' + paymentpriceproduct[i] + '</s></p>'+
+                        '<p class="card-text" style="font-size: 14px;">Quantity : ' + paymentquantity[i] + '<b class="card-text" style="float: right; font-size: 16px;" >Total : Rp.' + paymentamountproduct[i] + '</b></p>' +
+                        '</div>' +
+                        '</div>'
+                }
+
+
+            }
+
+            showlistproduct()
+    </script>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous">
+    </script>
+
+
+    <!-- Option 2: jQuery, Popper.js, and Bootstrap JS
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
